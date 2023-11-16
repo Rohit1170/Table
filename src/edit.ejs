@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            user-select: none;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .srno{
+            user-select: none;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/update/<%= item.serialNumber %>" method="post">
+        <label for="fileNumber">Serial Number:</label>
+        <input class="srno" type="text" name="serialNumber" value="<%= item.serialNumber %>" readonly>
+        <br>
+        <label for="fileNumber">File Number:</label>
+        <input type="text" name="fileNumber" value="<%= item.fileNumber %>" required>
+        <br>
+
+        <label for="portName">Port Name:</label>
+        <input type="text" name="portName" value="<%= item.portName %>" required>
+        <br>
+
+        <label for="placeOfPort">Place of Port:</label>
+        <input type="text" name="placeOfPort" value="<%= item.placeOfPort %>" required>
+        <br>
+
+        <label for="caseNumber">Case Number:</label>
+        <input type="text" name="caseNumber" value="<%= item.caseNumber %>" required>
+        <br>
+
+        <label for="fileOpeningDate">File Opening Date:</label>
+        <input type="date" name="fileOpeningDate" value="<%= item.fileOpeningDate %>" required>
+        <br>
+
+        <label for="petitionerName">Petitioner Name:</label>
+        <input type="text" name="petitionerName" value="<%= item.petitionerName %>" required>
+        <br>
+
+        <label for="councilName">Council Name:</label>
+        <input type="text" name="councilName" value="<%= item.councilName %>" required>
+        <br>
+
+        <label for="dateOfFiling">Date of Filing:</label>
+        <input type="date" name="dateOfFiling" value="<%= item.dateOfFiling %>" required>
+        <br>
+
+        <label for="dateOfHearing">Date of Hearing:</label>
+        <input type="date" name="dateOfHearing" value="<%= item.dateOfHearing %>" required>
+        <br>
+
+        <label for="remarksStatus">Remarks Status:</label>
+        <input type="text" name="remarksStatus" value="<%= item.remarksStatus %>" required>
+        <br>
+
+        <label for="category">Category:</label>
+        <input type="text" name="category" value="<%= item.category %>" required>
+        <br>
+
+        <label for="dateOfDisposal">Date of Disposal:</label>
+        <input type="date" name="dateOfDisposal" value="<%= item.dateOfDisposal %>" required>
+        <br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>

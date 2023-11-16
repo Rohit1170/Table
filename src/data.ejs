@@ -1,0 +1,145 @@
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            user-select: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #searchBar {
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-position: 10px 10px; 
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search by serial number...">
+    <table>
+        <tr>
+            <th>Serial Number</th>
+            <th>File Number</th>
+            <th>Port Name</th>
+            <th>Place of Port</th>
+            <th>Case Number</th>
+            <th>File Opening Date</th>
+            <th>Petitioner Name</th>
+            <th>Council Name</th>
+            <th>Date of Filing</th>
+            <th>Date of Hearing</th>
+            <th>Remarks Status</th>
+            <th>Category</th>
+            <th>Date of Disposal</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <% data.forEach(function(item) { %>
+            <tr>
+                <td>
+                    <%= item.serialNumber %>
+                </td>
+                <td>
+                    <%= item.fileNumber %>
+                </td>
+                <td>
+                    <%= item.portName %>
+                </td>
+                <td>
+                    <%= item.placeOfPort %>
+                </td>
+                <td>
+                    <%= item.caseNumber %>
+                </td>
+                <td>
+                    <%= item.fileOpeningDate %>
+                </td>
+                <td>
+                    <%= item.petitionerName %>
+                </td>
+                <td>
+                    <%= item.councilName %>
+                </td>
+                <td>
+                    <%= item.dateOfFiling %>
+                </td>
+                <td>
+                    <%= item.dateOfHearing %>
+                </td>
+                <td>
+                    <%= item.remarksStatus %>
+                </td>
+                <td>
+                    <%= item.category %>
+                </td>
+                <td>
+                    <%= item.dateOfDisposal %>
+                </td>
+                <td>
+                    <form action="/edit/<%= item.serialNumber %>" method="get">
+                        <button type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/delete/<%= item.serialNumber %>" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+            <% }); %>
+    </table>
+
+
+    <script>
+        function filterTable() {
+            var input = document.getElementById('searchBar');
+            var table = document.getElementsByTagName('table')[0];
+            var filter = input.value.toUpperCase();
+            for (var i = 1; i < table.rows.length; i++) { 
+                var cell = table.rows[i].cells[0];
+                if (cell) {
+                    var txtValue = cell.textContent || cell.innerText;
+                    txtValue = txtValue.toUpperCase();
+        
+                    if (txtValue.indexOf(filter) > -1) {
+                        table.rows[i].style.display = "";
+                    } else {
+                        table.rows[i].style.display = "none";
+                    }
+                }
+            }
+        }        
+    </script>
+
+</body>
